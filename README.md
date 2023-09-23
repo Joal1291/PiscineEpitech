@@ -1,6 +1,13 @@
 # PiscineEpitech
 Varisous project linked to the EPITECH school pool
 -------------------------------------------------
+## All
+
+
+| Project   | Techno     | Description                | Development |
+| :-------- | :-------   | :------------------------- | :---------- |
+|[Hangman Game](https://github.com/Joal1291/PiscineEpitech/tree/main/Hangman_game_pygame)| Python|A small game to display into a terminal|Finished|
+|[Hangman Game](https://github.com/Joal1291/PiscineEpitech/tree/main/Hangman_game)|Pyhton|Small game using pygame module|In Process|
 
 Hangman pygame (in development)
 ------------------------------------------------
