@@ -1,6 +1,14 @@
-PiscineEpitech
+# PiscineEpitech
 Varisous project linked to the EPITECH school pool
 -------------------------------------------------
+
+Hangman pygame (in development)
+------------------------------------------------
+![Capture d’écran du 2023-09-23 12-48-51](https://github.com/Joal1291/PiscineEpitech/assets/144683460/f72500d2-387a-4934-953a-b024b3408276)
+
+Hangman Game, using Python and pygame module. Here's the direct [LINK](https://github.com/Joal1291/PiscineEpitech/tree/main/Hangman_game_pygame)
+
+
 
 Hangman
 ---------------------------------------------------
