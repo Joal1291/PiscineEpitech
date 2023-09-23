@@ -1,4 +1,4 @@
-# PiscineEpitech
+PiscineEpitech
 Varisous project linked to the EPITECH school pool
 -------------------------------------------------
 
