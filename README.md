@@ -6,10 +6,10 @@ Varisous project linked to the EPITECH school pool
 
 | Project   | Techno     | Description                | Development |
 | :-------- | :-------   | :------------------------- | :---------- |
-|[Hangman Game](https://github.com/Joal1291/PiscineEpitech/tree/main/Hangman_game_pygame)| Python|A small game to display into a terminal|Finished|
-|[Hangman Game](https://github.com/Joal1291/PiscineEpitech/tree/main/Hangman_game)|Pyhton|Small game using pygame module|In Process|
+|[Hangman Game](https://github.com/Joal1291/PiscineEpitech/tree/main/Hangman_game_pygame)|![Capture d’écran du 2023-09-23 14-20-14](https://github.com/Joal1291/PiscineEpitech/assets/144683460/25001e25-d604-4547-a369-24696a05882b) ![Capture d’écran du 2023-09-23 14-21-15](https://github.com/Joal1291/PiscineEpitech/assets/144683460/7e2efdc2-dcbf-4ebe-bcef-03a9a62c732d)|Small game using pygame module|In Process|
+|[Hangman Game](https://github.com/Joal1291/PiscineEpitech/tree/main/Hangman_game)|![Capture d’écran du 2023-09-23 14-20-14](https://github.com/Joal1291/PiscineEpitech/assets/144683460/25001e25-d604-4547-a369-24696a05882b)|A small game to display into a terminal|Finished|
 
-Hangman pygame (in development)
+Hangman pygame (in process)
 ------------------------------------------------
 ![Capture d’écran du 2023-09-23 12-48-51](https://github.com/Joal1291/PiscineEpitech/assets/144683460/f72500d2-387a-4934-953a-b024b3408276)
 
