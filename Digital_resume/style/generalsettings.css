@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/*---FLEXBOX---*/
+.flexcolumn{
+    display: flex;
+    flex-direction: column;
+}
+.flexrow{
+    display: flex;
+    flex-direction: row;
+}
+.align_c{
+    align-items: center;
+}
+.justify_c{
+    justify-content: center;
+}
+.justify_sb{
+    justify-content: space-between;
+}
+.justify_sa{
+    justify-content: space-around;
+}
+/*---FONT---*/
+.fontbasis{
+    font-family: 'Martian Mono', monospace;
+}
+
+/*---LINK STYLE---LIST STYLE---*/
+.textdeco{
+    text-decoration: none;
+}
+.listtype{
+    list-style-type: none;
+}
+
+/*---COLORS---*/
+.black_text{
+    color: black;
+}
+.white_text{
+    color: white;
+}
+.grey_back{
+    background-color: grey;
+}
+.black_back{
+    background-color: black;
+}
