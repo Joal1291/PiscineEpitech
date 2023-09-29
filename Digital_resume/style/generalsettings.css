@@ -30,6 +30,9 @@
 .text_a{
     text-align: center;
 }
+.text_j{
+    text-align: justify;
+}
 /*---FONT---*/
 .fontbasis{
     font-family: 'Martian Mono', monospace;

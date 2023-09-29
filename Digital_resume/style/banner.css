@@ -26,6 +26,21 @@ h2{
     height: 10vh;
     width: 100%;
 }
+h3{
+    font-size: 3vh;
+    height: 10vh;
+}
+.presentation{
+    display: none;
+}
+.profil{
+    height: 80%;
+    width: 70%;
+    text-align: justify;
+}
+.profil>p{
+    padding: 0px 20px 0px 20px;
+}
 .profil_picture{
     object-fit: cover;
     width: 60%;
@@ -52,17 +67,29 @@ nav.banner_nav > ul >li:hover{
 nav.banner_nav > ul > li > a{
     font-size: 4vh;
 }
+.main_profil{
+    width: 100%;
+    height: 100%;
+}
 main{
     width: 100%;
     height: 100vh;
     background-color: white;
+    /* display: none; */
+    /* animation: main 5s linear forwards; */
 }
 footer{
     background-color: white;
     height: 10vh;
 }
+footer>a>img{
+    object-fit: contain;
+}
 .footer2{
     display: none;
+}
+.footer2>a>img{
+    object-fit: contain;
 }
 .img_footer{
     width: 3vw;
@@ -89,6 +116,109 @@ footer{
 div.container_skills p{
     height: 15%;
 }
+
+/*loader*/
+.loader_waiting{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1;
+    position: relative;
+    /* animation: loader_waiting 1.5s linear forwards; */
+
+}
+/*
+.loader{
+    height: 50vh;
+    width: 50%;
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 25%;
+    left: 40%;
+    z-index: -1;
+    animation: loader 1.5s linear forwards;
+}
+.loader_container{
+    height: 40vh;
+    width: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.loader_img{
+    background-image: url(../Image/loader_commerce.png);
+    background-size: cover;
+    height: 40%;
+    width: 40%;
+    animation: loader_img 1.5s linear forwards;
+}
+.loader_charge{
+    height: 10%;
+    width: 75%;
+    display: flex;
+    align-items: center;
+}
+.loader_charge_bar{
+    display: flex;
+    justify-content: flex-start;
+    background-color: black;
+    border-radius: 50px;
+    height: 50%;
+    width: 0%;
+    animation: loader_charge_bar 1.5s linear  forwards;
+} */
+@keyframes loader_img{
+    from{
+        background-image: url(../Image/loader/loader_commerce.png)
+    }
+    15%{
+        background-image: url(../Image/loader/loader_commerce.png)
+    }
+    20%{
+        background-image: url(../Image/loader/loader_globetrotter.png)
+    }
+    35%{
+        background-image: url(../Image/loader/loader_globetrotter.png)
+    }
+    40%{
+        background-image: url(../Image/loader/loader_barman.png);
+    }
+    55%{
+        background-image: url(../Image/loader/loader_barman.png);
+    }
+    60%{
+        background-image: url(../Image/loader/loader_livraison.png);
+    }
+    75%{
+        background-image: url(../Image/loader/loader_livraison.png);
+    }
+    80%{
+        background-image: url(../Image/loader/loader_ordi.png);
+    }
+    to{
+        background-image: url(../Image/loader/loader_ordi.png);
+    }
+}
+@keyframes loader_charge_bar{
+    from{width: 0%;}
+    to{width: 100%}
+}
+@keyframes loader{
+    from{z-index: 10;}
+    99%{z-index: 10;}
+    to{z-index: 0;}
+}
+@keyframes loader_waiting{
+    from{z-index: -10;}
+    99%{z-index: 0;}
+    to{z-index: 1;}
+}
+
+
 @media screen and (max-width: 1024px){
     body{
         display: flex;
@@ -126,6 +256,17 @@ div.container_skills p{
     }
     main{
         height: 200vh ;
+    }
+    .loader_waiting{
+        animation:none;
+    }
+    .loader{
+        animation: none;
+    }
+    .profil{
+        width: 100%;
+        height: 70%;
+        text-align: center;
     }
 
 }

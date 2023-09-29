@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    height: 100%;
+    height: 90%;
 }
 
 .myCard {
@@ -57,37 +57,37 @@
   .frontSide1,
   .frontSide1::before {
     /* background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%); */
-    background-image: url(../Image/transport.jpg);
+    background-image: url(../Image/experience/transport.jpg);
     background-size: cover;
 }
 .frontSide2,
   .frontSide2::before {
     /* background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%); */
-    background-image: url(../Image/barman.jpg);
+    background-image: url(../Image/experience/barman.jpg);
     background-size: cover;
 }
 .frontSide3,
   .frontSide3::before {
     /* background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%); */
-    background-image: url(../Image/globe.jpg);
+    background-image: url(../Image/experience/globe.jpg);
     background-size: cover;
 }
 .frontSide4,
   .frontSide4::before {
     /* background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%); */
-    background-image: url(../Image/commercial.jpg);
+    background-image: url(../Image/experience/commercial.jpg);
     background-size: cover;
 }
 .frontSide5,
   .frontSide5::before {
     /* background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%); */
-    background-image: url(../Image/epitech.jpeg);
+    background-image: url(../Image/formation/epitech.jpeg);
     background-size: cover;
 }
 .frontSide6,
   .frontSide6::before {
     /* background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%); */
-    background-image: url(../Image/openclassrooms.jpg);
+    background-image: url(../Image/formation/openclassrooms.jpg);
     background-size: cover;
 }
   
