@@ -24,6 +24,12 @@
 .justify_sa{
     justify-content: space-around;
 }
+.justify_se{
+    justify-content: space-evenly;
+}
+.text_a{
+    text-align: center;
+}
 /*---FONT---*/
 .fontbasis{
     font-family: 'Martian Mono', monospace;

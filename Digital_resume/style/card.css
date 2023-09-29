@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    height: 90%;
+    height: 100%;
 }
 
 .myCard {
@@ -98,6 +98,7 @@
   
   .backSide {
     transform: rotateY(180deg);
+    font-size: 2vh;
   }
   
   .frontSide1::before, .frontSide2::before, .frontSide3::before, .frontSide4::before, .frontSide5::before,.frontSide6::before, .backSide::before {
@@ -125,5 +126,12 @@
   
     100% {
       opacity: 0.3;
+    }
+  }
+
+  @media screen and (max-width: 1024px){
+    .myCard{
+      width: 80vw;
+      height: 40vh;
     }
   }

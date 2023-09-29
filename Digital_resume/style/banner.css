@@ -68,8 +68,14 @@ footer{
     width: 3vw;
     height: 6vh;
 }
+.contact_container{
+    height: 90%;
+}
+.contact_container p{
+    font-size: 3vh;
+}
 .container_principal_skills{
-    height: 90vh;
+    height: 90%;
 }
 .container_skills{
     height: 50%;
@@ -87,6 +93,7 @@ div.container_skills p{
     body{
         display: flex;
         flex-direction: column;
+        height: 300vh;
     }
     .side_banner{
         width: 100vw;
@@ -114,8 +121,11 @@ div.container_skills p{
         justify-content: space-around;
         align-items: center;
         background-color: white;
-        height: 10vh;
+        height: 15vh;
+        box-shadow: 3px 3px 10px black;
     }
-    
+    main{
+        height: 200vh ;
+    }
 
 }
