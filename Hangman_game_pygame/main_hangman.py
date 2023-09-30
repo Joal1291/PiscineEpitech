@@ -8,7 +8,8 @@ pygame.init()
 pygame.display.set_caption('Hangman Game')
 
 screen_resolution = (1000, 656)
-flags = pygame.DOUBLEBUF | pygame.HWSURFACE | pygame.NOFRAME 
+flags = pygame.DOUBLEBUF | pygame.HWSURFACE 
+# | pygame.NOFRAME 
 screen = pygame.display.set_mode(screen_resolution, flags)
 
 #---------------------------------------- LIST and DICTS
@@ -38,31 +39,25 @@ def createButton(letter, x_pos, y_pos):
     button = pygame.transform.scale(button, (70, 70))
     final_button = Button(button, x_pos, y_pos)
     return final_button
-def checkletter(letter, word, letterlist, displaygame, display, chance):
+
+def checkletter(letter, word, letterlist, display_in_game, chance):
     if letter in letterlist:
-        print("already played that letter")
+        print("lettre deja jouer")
     elif letter in word:
-        print("the letter is in the world")
         letterlist.insert(0, letter)
-        index = [i for i, c in enumerate(word)if c == letter]
+        index = [i for i, c in enumerate(word) if c == letter]
         for i in index:
-            displaygame = ""
-            position:int = i
-            display = display[:position] + letter + display[position+1:]
-            for i in display:
-                displaygame += i + ""
-                print(displaygame)
-                return displaygame
+            display_in_game[i] = letter
     elif letter not in word:
         letterlist.insert(0, letter)
-        chance += -1
-        print(letter, letterlist)
+        chance[0] += -1
+        print(f"nombre de chance : {chance[0]}")
+
 def displayingame(display_in_game):
-    position_x = 200
+    position_x = 180
     for i in display_in_game:
-            screen.blit(imageletterdict[i], (position_x, 340))
-            position_x += 60 
-        
+            screen.blit(imageletterdict[i], (position_x, 475))
+            position_x += 60
 #--------------------------------------------------------------------------------------------------------------------------
 #----------------------------------------- Record Page
 def record_page():
@@ -92,20 +87,28 @@ def record_page():
 
 #---------------------------------------------------------------------------------------------------------------------------
 #----------------------------------------- Play Page
-def play_page(a, b):
+def play_page(point, game_played):
+
+
+    mistery_word = list_of_word_to_display[random.randint(0, len(list_of_word_to_display))]
     list_of_used_letter:list = []
 
-    nbr_game_played = a
-    nbr_point = b
-    nbr_chance = 5
-    mistery_word = list_of_word_to_display[random.randint(0, len(list_of_word_to_display))]
-    displayundescored = "_"*len(mistery_word)
-    display = "".join(displayundescored)
-    display_in_game = "".join(display)
+    nbr_chance = [5]
+    nbr_game_played = [game_played]
+    nbr_point = [point]
+
+    display_in_game = []
+    for i in mistery_word:
+        display_in_game += "_"
+    
 
     while True:
 
-        # letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        letterlist:list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        
+       
+        
+        
 
         mouse_position = pygame.mouse.get_pos()
 
@@ -123,156 +126,35 @@ def play_page(a, b):
         #---Guess button
         button_guess_image = pygame.image.load("image/image_guess.png")
         button_guess_image = pygame.transform.scale(button_guess_image, (150, 100))
-        button_guess = Button(button_guess_image, 580, 550)
+        # button_guess = Button(button_guess_image, 580, 550)
         
         screen.blit(background_surface, (0, 0))
-        screen.blit(volcano_surface, (-50, -50))
-        screen.blit(fight_surface, (-50, 250))
+        screen.blit(volcano_surface, (-50, -10))
+        screen.blit(fight_surface, (-50, 380))
         screen.blit(score_surface, (20, -10))
         button_back.update()
-        button_guess.update()
+        # button_guess.update()
 
-        #--------------------- Button letters
-        button_a = createButton("a", 50, 500)
-        button_b = createButton("b", 100, 500)
-        button_c = createButton("c", 150, 500)
-        button_d = createButton("d", 200, 500)
-        button_e = createButton("e", 250, 500)
-        button_f = createButton("f", 300, 500)
-        button_g = createButton("g", 350, 500)
-        button_h = createButton("h", 400, 500)
-        button_i = createButton("i", 450, 500)
-        button_j = createButton("j", 75, 550)
-        button_k = createButton("k", 125, 550)
-        button_l = createButton("l", 175, 550)
-        button_m = createButton("m", 225, 550)
-        button_n = createButton("n", 275, 550)
-        button_o = createButton("o", 325, 550)
-        button_p = createButton("p", 375, 550)
-        button_q = createButton("q", 425, 550)
-        button_r = createButton("r", 50, 600)
-        button_s = createButton("s", 100, 600)
-        button_t = createButton("t", 150, 600)
-        button_u = createButton("u", 200, 600)
-        button_v = createButton("v", 250, 600)
-        button_w = createButton("w", 300, 600)
-        button_x = createButton("x", 350, 600)
-        button_y = createButton("y", 400, 600)
-        button_z = createButton("z", 450, 600)
-        #----------------- Button letter update
-        button_a.update()
-        button_b.update()
-        button_c.update()
-        button_d.update()
-        button_e.update()
-        button_f.update()
-        button_g.update()
-        button_h.update()
-        button_i.update()
-        button_j.update()
-        button_k.update()
-        button_l.update()
-        button_m.update()
-        button_n.update()
-        button_o.update()
-        button_p.update()
-        button_q.update()
-        button_r.update()
-        button_s.update()
-        button_t.update()
-        button_u.update()
-        button_v.update()
-        button_w.update()
-        button_x.update()
-        button_y.update()
-        button_z.update()
-        #--------------------------------------
+      
         displayingame(display_in_game)
-
+        
         letter = ""
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if button_back.check_position_input(mouse_position):
                     title_screen(1)
-                elif button_a.check_position_input(mouse_position):
-                    letter = "a"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_b.check_position_input(mouse_position):
-                    letter = "b"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_c.check_position_input(mouse_position):
-                    letter = "c"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_d.check_position_input(mouse_position):
-                    letter = "d"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_e.check_position_input(mouse_position):
-                    letter = "e"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_f.check_position_input(mouse_position):
-                    letter = "f"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_g.check_position_input(mouse_position):
-                    letter = "g"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_h.check_position_input(mouse_position):
-                    letter = "h"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_i.check_position_input(mouse_position):
-                    letter = "i"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_j.check_position_input(mouse_position):
-                    letter = "j"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_k.check_position_input(mouse_position):
-                    letter = "k"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_l.check_position_input(mouse_position):
-                    letter = "l"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_m.check_position_input(mouse_position):
-                    letter = "m"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_n.check_position_input(mouse_position):
-                    letter = "n"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_o.check_position_input(mouse_position):
-                    letter = "o"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_p.check_position_input(mouse_position):
-                    letter = "p"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_q.check_position_input(mouse_position):
-                    letter = "q"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_r.check_position_input(mouse_position):
-                    letter = "r"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_s.check_position_input(mouse_position):
-                    letter = "s"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_t.check_position_input(mouse_position):
-                    letter = "t"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_u.check_position_input(mouse_position):
-                    letter = "u"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_v.check_position_input(mouse_position):
-                    letter = "v"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_w.check_position_input(mouse_position):
-                    letter = "w"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_x.check_position_input(mouse_position):
-                    letter = "x"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_y.check_position_input(mouse_position):
-                    letter = "y"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-                elif button_z.check_position_input(mouse_position):
-                    letter = "z"
-                    checkletter(letter, mistery_word, list_of_used_letter, display_in_game, display, nbr_chance)
-        
+            if event.type == pygame.KEYDOWN:
+                key_name = pygame.key.name(event.key)
+                if key_name in letterlist:
+                    checkletter(key_name, mistery_word, list_of_used_letter, display_in_game, nbr_chance)
+                    print(f"La touche {key_name} a été pressée")
+                else:
+                    print("tu ne peut pas jouer ca")
+            if nbr_chance == 0 and "_" in display_in_game:
+                title_screen(1)
+            if "_" not in display_in_game:
+                print("you won")
+
         pygame.display.update()
 
 #---------------------------------------------------------------------------------------------------------------------------
