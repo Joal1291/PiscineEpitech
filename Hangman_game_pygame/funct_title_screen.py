@@ -25,4 +25,5 @@ def title_screen_animation(b):
         else:
             b.blit(image, (0, 0))
             break
+
         
