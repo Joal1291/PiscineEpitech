@@ -1,15 +1,16 @@
 import pygame, sys
 import time
 import random
+
 import funct_title_screen as ts
+import fight
 
 
 pygame.init()
 pygame.display.set_caption('Hangman Game')
 
 screen_resolution = (1000, 656)
-flags = pygame.DOUBLEBUF | pygame.HWSURFACE 
-# | pygame.NOFRAME 
+flags = pygame.DOUBLEBUF | pygame.HWSURFACE | pygame.NOFRAME 
 screen = pygame.display.set_mode(screen_resolution, flags)
 
 #---------------------------------------- LIST and DICTS
@@ -98,6 +99,7 @@ def play_page(point, game_played):
     nbr_point = [point]
 
     display_in_game = []
+
     for i in mistery_word:
         display_in_game += "_"
     
@@ -137,8 +139,9 @@ def play_page(point, game_played):
 
       
         displayingame(display_in_game)
-        
+
         letter = ""
+
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if button_back.check_position_input(mouse_position):
