@@ -21,8 +21,8 @@ imageletterdict:dict = {'a': pygame.image.load("image/image_letter/image_letter_
 
 #----------------------------------------- Animation images.
 #---Entrance animation
-goku_entrance_images = [pygame.image.load(f"image/fight_sprites/goku/anim_entrer/{index}.png")for index in range(1, 13)]
-vegeta_entrance_images = [pygame.image.load(f"image/fight_sprites/vegeta/anim_entrer/{index}.png")for index in range(1, 13)]
+goku_entrance_images = [pygame.image.load(f"image/fight_sprites/goku/anim_entrer/{index}.png")for index in range(1, 18)]
+vegeta_entrance_images = [pygame.image.load(f"image/fight_sprites/vegeta/anim_entrer/{index}.png")for index in range(1, 18)]
 #---Waiting position during fight
 goku_waiting_images = [pygame.image.load(f"image/fight_sprites/goku/position_hors_combat/{index}.png")for index in range(1, 11)]
 vegeta_waiting_images = [pygame.image.load(f"image/fight_sprites/vegeta/pose_depart/{index}.png")for index in range(1, 11)]
@@ -38,7 +38,7 @@ goku_feet2_images = [pygame.image.load(f"image/fight_sprites/goku/coup_de_pied_3
 goku_falling_images = [pygame.image.load(f"image/fight_sprites/goku/prend_un_coup/{index}.png")for index in range(1, 16)]
 #------------------------Vegeta
 #---Fist
-vegeta_fist_images = [pygame.image.load(f"image/fight_sprites/vegeta/coup_de_massu/{index}.png")for index in range(1, 9)]
+vegeta_fist_images = [pygame.image.load(f"image/fight_sprites/vegeta/coup_de_massu/{index}.png")for index in range(1, 16)]
 vegeta_fist1_images = [pygame.image.load(f"image/fight_sprites/vegeta/coup_de_poing_1/{index}.png")for index in range(1, 10)]
 vegeta_fist2_images = [pygame.image.load(f"image/fight_sprites/vegeta/coup_de_poing_2/{index}.png")for index in range(1, 11)]
 #---Feet
@@ -72,7 +72,8 @@ class Animation(pygame.sprite.Sprite):
         self.index = 0
         self.image = self.images[self.index]
         self.rect = self.image.get_rect()
-        self.rect.center = (position_x, position_y)
+        self.rect.bottom = (position_y + self.image.get_height())
+        self.rect.x = position_x
         self.frame_delay = 100
         self.last_update = pygame.time.get_ticks()
     
@@ -164,7 +165,10 @@ def play_page(point, game_played):
     #-------------------------------Usefull for animation
     clock = pygame.time.Clock()
     attack = False
+    waitposition = False
     entrance = True
+    attack_go = False
+    attack_ve = False
     positionfight = 0
     curindex = 0
     #----------------------------------------------------
@@ -180,23 +184,43 @@ def play_page(point, game_played):
     init_anim = pygame.sprite.Group()
     #---Entrance position
     init_go_entrance = pygame.sprite.Group()
-    anim_go_entrance = Animation(goku_entrance_images, 430, 360)
+    anim_go_entrance = Animation(goku_entrance_images, 380, 280)
     init_ve_entrance = pygame.sprite.Group()
-    anim_ve_entrance = Animation(vegeta_entrance_images, 560, 360)
+    anim_ve_entrance = Animation(vegeta_entrance_images, 510, 295)
 
     init_go_entrance.add(anim_go_entrance)
     init_ve_entrance.add(anim_ve_entrance)
     #---Waiting position durign fight
     initialiaze_goku_waiting = pygame.sprite.Group()
-    animation_goku_waiting = Animation(goku_waiting_images, 430, 360)
+    animation_goku_waiting = Animation(goku_waiting_images, 380, 310)
 
     initialiaze_vegeta_waiting = pygame.sprite.Group()
-    animation_vegeta_waiting = Animation(vegeta_waiting_images, 560, 360)
+    animation_vegeta_waiting = Animation(vegeta_waiting_images, 510, 315)
 
     initialiaze_goku_waiting.add(animation_goku_waiting)
     initialiaze_vegeta_waiting.add(animation_vegeta_waiting)
-    #-------------------------------------------------
+    #---Attack coup de massu goku
+    init_go_coup_de_massu = pygame.sprite.Group()
+    anim_go_coup_de_massu = Animation(goku_fist_images, 440, 310)
+    init_go_coup_de_massu.add(anim_go_coup_de_massu)
+    #---Attack coup de massu vegeta
+    init_ve_coup_de_massu = pygame.sprite.Group()
+    anim_ve_coup_de_massu = Animation(vegeta_fist_images, 470, 315)
+    init_ve_coup_de_massu.add(anim_ve_coup_de_massu)
+    #---Falling Goku
+    init_go_fall = pygame.sprite.Group()
+    anim_go_fall = Animation(goku_falling_images, 430, 310)
+    init_go_fall.add(anim_go_fall)
+    #---Falling Vegeta
+    init_ve_fall = pygame.sprite.Group()
+    anim_ve_fall = Animation(vegeta_falling_images, 550, 315)
+    init_ve_fall.add(anim_ve_fall)
+    #---For Both
 
+    #-------------------------------------------------
+    vegetavoix = pygame.mixer.music.load("musique/parole/vegeta/vvgs109_vs_frn.ogg")
+    
+    pygame.mixer.music.play()
 
     while True:
 
@@ -242,6 +266,8 @@ def play_page(point, game_played):
             if event.type == pygame.KEYDOWN:
                 key_name = pygame.key.name(event.key)
                 if key_name in letterlist:
+                    attack_ve = True
+                    waitposition = False
                     checkletter(key_name, mistery_word, list_of_used_letter, display_in_game, nbr_chance)
                     print(f"La touche {key_name} a été pressée")
                 else:
@@ -250,27 +276,43 @@ def play_page(point, game_played):
                 title_screen(1)
             if "_" not in display_in_game:
                 print("you won")
-
-        # print(curindex)
-        # print(len(goku_entrance_images))
-        if attack == False and positionfight == 0:
-            init_go_entrance.update()
-            init_go_entrance.draw(screen)
-            init_ve_entrance.update()
-            init_ve_entrance.draw(screen)
-                      
-        # else:
-        #     positionfight = 1
-                
                         
-        if attack == False and positionfight == 1 :
+        if entrance == True:
+            init_go_entrance.update()
+            init_ve_entrance.update()
+            init_go_entrance.draw(screen)
+            init_ve_entrance.draw(screen)
+            
+        if anim_go_entrance.index == len(anim_go_entrance.images) -1: 
+            entrance = False
+            waitposition = True
+
+        if waitposition == True:
             initialiaze_goku_waiting.update()
-            initialiaze_goku_waiting.draw(screen)
             initialiaze_vegeta_waiting.update()
+            initialiaze_goku_waiting.draw(screen)
             initialiaze_vegeta_waiting.draw(screen)
+        
+        if attack_go == True:
+            init_go_coup_de_massu.update()
+            init_ve_fall.update()
+            init_go_coup_de_massu.draw(screen)
+            init_ve_fall.draw(screen)
+        if anim_ve_fall.index == len(anim_ve_fall.images) -1: 
+            attack_go = False
+            waitposition = True
+
+        if attack_ve == True:
+            init_ve_coup_de_massu.update()
+            init_go_fall.update()
+            init_go_fall.draw(screen)
+            init_ve_coup_de_massu.draw(screen)
+            
+        if anim_go_fall.index == len(anim_go_fall.images) -1: 
+            attack_ve = False
+            waitposition = True
 
     
-        curindex += 1
         pygame.display.flip()
         pygame.display.update()
         
